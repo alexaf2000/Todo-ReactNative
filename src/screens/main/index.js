@@ -10,14 +10,15 @@ const styles = StyleSheet.create({
     },
   });
   
+const todos = ["Thing 1", "Thing 2","Thing 3"]
 class MainScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
                 <Text>ToDo List App</Text>
-                <Text>Tareas 1</Text>
-                <Text selectable selectionColor="#008bef">Tarea 2 - This is selectable with custom color.</Text>
-                <Text>Tarea 3 </Text>
+                <Text>{todos[0]}</Text>
+                <Text selectable selectionColor="#008bef">{todos[1]} - This is selectable with custom color.</Text>
+                <Text>{todos[2]}</Text>
             </View>
         );
     }
