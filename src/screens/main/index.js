@@ -16,6 +16,10 @@ class MainScreen extends Component {
         return (
             <View style={styles.container}>
                 <Text>ToDo List App</Text>
+                {/* Using key as if was an id with something really unique, the array index is not safe at all, its for internal use */}
+                {todos.map(todo=>(
+                    <Text key={todo}>{todo}</Text>
+                ))}
                 <Text>{todos[0]}</Text>
                 <Text selectable selectionColor="#008bef">{todos[1]} - This is selectable with custom color.</Text>
                 <Text>{todos[2]}</Text>
