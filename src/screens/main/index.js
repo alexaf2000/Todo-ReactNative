@@ -10,7 +10,9 @@ const styles = StyleSheet.create({
     },
   });
   
-const todos = ["Thing 1", "Thing 2","Thing 3"]
+const todos = [
+    {text: "Thing 1",done: false},{text: "Thing 2",done: false},{text: "Thing 3",done: true},
+]
 class MainScreen extends Component {
     render() {
         return (
@@ -18,11 +20,11 @@ class MainScreen extends Component {
                 <Text>ToDo List App</Text>
                 {/* Using key as if was an id with something really unique, the array index is not safe at all, its for internal use */}
                 {todos.map(todo=>(
-                    <Text key={todo}>{todo}</Text>
+                    // React usual way - IMPORTANT Look at the negation
+                    !todo.done && <Text key={todo.text}>{todo.text}</Text>
+                    //Usual programming way with if elese
+                    //todo.done ? null : <Text key={todo.text}>{todo.text}</Text>
                 ))}
-                <Text>{todos[0]}</Text>
-                <Text selectable selectionColor="#008bef">{todos[1]} - This is selectable with custom color.</Text>
-                <Text>{todos[2]}</Text>
             </View>
         );
     }
