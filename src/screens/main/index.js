@@ -26,7 +26,7 @@ class MainScreen extends Component {
         const { todos } = this.state;
         return (
             <View style={styles.container}>
-                <Text selectable selectionColor="red">ToDo List App</Text>
+                <Text selectable selectionColor="red" style={{ fontSize: 24, marginBottom: 25, fontWeight: "bold" }}>ToDo List App</Text>
                 <TodoList todos={todos} />
             </View>
         );
