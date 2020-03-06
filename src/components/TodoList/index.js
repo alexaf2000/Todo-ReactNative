@@ -10,14 +10,19 @@ const styles = StyleSheet.create({
     text:{
         padding: 2,
         fontWeight: "bold"
+    },
+    textDone:{
+        textDecorationLine: "line-through",
+        fontWeight: "normal",
+        color: '#aaa'
     }
 })
 const TodoList = ({ todos }) => (
     <Fragment>
         {todos.map(
-            todo => (!todo.done &&
+            todo => (
                 <View key={todo.text} style={styles.listItem}>
-                    <Text style={styles.text}>
+                    <Text style={[styles.text, todo.done && styles.textDone]}>
                         {todo.text}
                     </Text>
                 </View>
