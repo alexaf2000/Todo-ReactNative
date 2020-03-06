@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import TodoList from "../../components/TodoList";
+import TodoList from "TodoList/src/components/TodoList";
 
 const styles = StyleSheet.create({
     container: {
