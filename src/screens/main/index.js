@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {View, Text, StyleSheet, SafeAreaView } from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, TextInput} from "react-native";
 import TodoList from "TodoList/src/components/TodoList";
 import { getTodos } from "TodoList/src/data/todos"
 
@@ -28,6 +28,7 @@ class MainScreen extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <Text selectable selectionColor="red" style={{ fontSize: 24, marginBottom: 25, fontWeight: "bold" }}>ToDo List App</Text>
+                <TextInput placeholder="Introduce una nueva tarea" style={styles.text}/>
                 <TodoList todos={todos} />
             </SafeAreaView>
         );
