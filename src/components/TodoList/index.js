@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 2,
         margin: 2,
-        width: "80%"
+        width: "80%",
+        flexDirection: "row"
     },
     text:{
         padding: 2,
@@ -22,6 +23,7 @@ const TodoList = ({ todos }) => (
         {todos.map(
             todo => (
                 <View key={todo.text} style={styles.listItem}>
+                    <Text style={[styles.text, todo.done && styles.textDone]}> - </Text>
                     <Text style={[styles.text, todo.done && styles.textDone]}>
                         {todo.text}
                     </Text>
