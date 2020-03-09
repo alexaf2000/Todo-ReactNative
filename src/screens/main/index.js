@@ -17,19 +17,21 @@ class MainScreen extends Component {
         super(props)
 
         this.state = {
-            todos: []
+            todos: [],
+            newTodo: null
         };
     };
     componentDidMount = () => {
         this.setState({ todos: getTodos() });
     }
     render() {
-        const { todos } = this.state;
+        const { todos,newTodo } = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <Text selectable selectionColor="red" style={{ fontSize: 24, marginBottom: 25, fontWeight: "bold" }}>ToDo List App</Text>
-                <TextInput placeholder="Introduce una nueva tarea" style={styles.text}/>
+                <TextInput value={newTodo} onChangeText={thingtodo=> this.setState({newTodo:thingtodo})} placeholder="Introduce una nueva tarea" style={styles.text}/>
                 <TodoList todos={todos} />
+                <Text>{newTodo}</Text>
             </SafeAreaView>
         );
     }
