@@ -29,7 +29,7 @@ class MainScreen extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <Text selectable selectionColor="red" style={{ fontSize: 24, marginBottom: 25, fontWeight: "bold" }}>ToDo List App</Text>
-                <TextInput value={newTodo} onChangeText={thingtodo=> this.setState({newTodo:thingtodo})} placeholder="Introduce una nueva tarea" style={styles.text}/>
+                <TextInput value={newTodo} onChangeText={thingtodo=> this.setState({newTodo:thingtodo})} placeholder="Introduce una nueva tarea" autoCapitalize="sentences" style={styles.text}/>
                 <TodoList todos={todos} />
                 <Text>{newTodo}</Text>
             </SafeAreaView>
