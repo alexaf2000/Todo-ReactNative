@@ -1,6 +1,15 @@
+import uuid from 'react-native-uuid';
+
 const getTodos = () => [
-    { text: "Thing 1", done: false },
-    { text: "Thing 2", done: false },
-    { text: "Thing 3", done: true }
+    newTodo({ text: "Thing 1", done: false }),
+    newTodo({ text: "Thing 2", done: false }),
+    newTodo({ text: "Thing 3", done: true })
 ];
-export { getTodos };
+const newTodo = todo => ({
+    id: uuid.v1(),
+    text: todo.text,
+    createdAt: new Date(),
+    done: todo.done
+});
+const addTodo = (list, todo) => [...(list || []), newTodo({ text: todo.text, done: true })];
+export { getTodos, addTodo };

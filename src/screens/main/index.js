@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {View, Text, StyleSheet, SafeAreaView, TextInput, Button} from "react-native";
 import TodoList from "TodoList/src/components/TodoList";
-import { getTodos } from "TodoList/src/data/todos"
+import { getTodos, addTodo } from "TodoList/src/data/todos";
 
 const styles = StyleSheet.create({
     container: {
@@ -33,20 +33,22 @@ class MainScreen extends Component {
     componentDidMount = () => {
         this.setState({ todos: getTodos() });
     }
-    addTodo = () => {
-        
+    addTodoBtn = () => {
+        const {todos, newTodo} = this.state;
+        const newList = addTodo(todos, {text:newTodo});
+        this.setState({todos:newList,newTodo: null});
+        console.log(todos);
     }
     render() {
-        const { todos,newTodo } = this.state;
+        const { todos, newTodo } = this.state;
         return (
             <SafeAreaView style={styles.container}>
                 <Text selectable selectionColor="red" style={{ fontSize: 24, marginBottom: 25, fontWeight: "bold" }}>ToDo List App</Text>
                 <View style={styles.inputTodo}>
                 <TextInput value={newTodo} onChangeText={thingtodo=> this.setState({newTodo:thingtodo})} placeholder="Introduce una nueva tarea" autoCapitalize="sentences" style={styles.text} returnKeyType="done"/>
-                <Button title="Añadir" onPress={this.addTodo}/>
+                <Button title="Añadir" onPress={this.addTodoBtn}/>
                 </View>
                 <TodoList todos={todos} />
-                <Text>{newTodo}</Text>
             </SafeAreaView>
         );
     }
