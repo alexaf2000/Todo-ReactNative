@@ -11,5 +11,5 @@ const newTodo = todo => ({
     createdAt: new Date(),
     done: todo.done
 });
-const addTodo = (list, todo) => [...(list || []), newTodo({ text: todo.text, done: true })];
+const addTodo = (list, todo) => [...(list || []), newTodo({ text: todo.text, done: false })];
 export { getTodos, addTodo };
