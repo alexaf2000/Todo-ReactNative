@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 const styles = StyleSheet.create({
     listItem: {
         borderWidth: 1,
@@ -22,12 +22,12 @@ const TodoList = ({ todos }) => (
     <Fragment>
         {todos.map(
             todo => (
-                <View key={todo.text} style={styles.listItem}>
+                <TouchableOpacity key={todo.text} style={styles.listItem}>
                     <Text style={[styles.text, todo.done && styles.textDone]}> - </Text>
                     <Text style={[styles.text, todo.done && styles.textDone]}>
                         {todo.text}
                     </Text>
-                </View>
+                </TouchableOpacity>
             ))}
     </Fragment>
 );
