@@ -11,5 +11,12 @@ const newTodo = todo => ({
     createdAt: new Date(),
     done: todo.done
 });
+
+const updateTodo = (list, todo) => {
+    const updateIndex = list.findIndex(t => t.id === todo.id);
+    const newTodoList = [...list];
+    newTodoList[updateIndex] = todo;
+    return newTodoList;
+};
 const addTodo = (list, todo) => [...(list || []), newTodo({ text: todo.text, done: false })];
-export { getTodos, addTodo };
+export { getTodos, addTodo, updateTodo };

@@ -18,11 +18,12 @@ const styles = StyleSheet.create({
         color: '#aaa'
     }
 })
-const TodoList = ({ todos }) => (
+// Adds onUpdate parameter from parent
+const TodoList = ({ todos, onUpdate }) => (
     <Fragment>
         {todos.map(
             todo => (
-                <TouchableOpacity key={todo.text} style={styles.listItem}>
+                <TouchableOpacity key={todo.text} style={styles.listItem} onPress={() => onUpdate({...todo, done: !todo.done})}>
                     <Text style={[styles.text, todo.done && styles.textDone]}> - </Text>
                     <Text style={[styles.text, todo.done && styles.textDone]}>
                         {todo.text}
