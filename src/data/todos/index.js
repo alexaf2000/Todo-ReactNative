@@ -18,5 +18,9 @@ const updateTodo = (list, todo) => {
     newTodoList[updateIndex] = todo;
     return newTodoList;
 };
+
+// Where each element from list id is different from the wanted to delete todo id
+const deleteTodo = (list, todo) => list.filter(t => t.id !== todo.id);
+
 const addTodo = (list, todo) => [...(list || []), newTodo({ text: todo.text, done: false })];
-export { getTodos, addTodo, updateTodo };
+export { getTodos, addTodo, updateTodo, deleteTodo };

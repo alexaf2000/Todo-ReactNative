@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 const styles = StyleSheet.create({
     listItem: {
         borderWidth: 1,
@@ -9,25 +9,43 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     text:{
-        padding: 2,
+        flex: 1,
+        padding: 5,
         fontWeight: "bold"
+    },
+    bullet: {
+        fontWeight: "bold",
+        padding: 5
     },
     textDone:{
         textDecorationLine: "line-through",
         fontWeight: "normal",
         color: '#aaa'
+    },
+    deleteButton:{
+        width: 30,
+        height: 30,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    deleteButtonText:{
+        color: '#d92114',
+        fontSize: 18
     }
 })
 // Adds onUpdate parameter from parent
-const TodoList = ({ todos, onUpdate }) => (
+const TodoList = ({ todos, onUpdate, onDelete }) => (
     <Fragment>
         {todos.map(
             todo => (
                 <TouchableOpacity key={todo.text} style={styles.listItem} onPress={() => onUpdate({...todo, done: !todo.done})}>
-                    <Text style={[styles.text, todo.done && styles.textDone]}> - </Text>
+                    <Text style={styles.bullet}> - </Text>
                     <Text style={[styles.text, todo.done && styles.textDone]}>
                         {todo.text}
                     </Text>
+                    <TouchableHighlight style={styles.deleteButton}>
+                        <Text style={styles.deleteButtonText} onPress={() => onDelete(todo)}>X</Text>
+                    </TouchableHighlight>
                 </TouchableOpacity>
             ))}
     </Fragment>

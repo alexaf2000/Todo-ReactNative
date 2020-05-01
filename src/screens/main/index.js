@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {View, Text, StyleSheet, SafeAreaView, TextInput, Button} from "react-native";
 import TodoList from "TodoList/src/components/TodoList";
-import { getTodos, addTodo,updateTodo } from "TodoList/src/data/todos";
+import { getTodos, addTodo,updateTodo, deleteTodo } from "TodoList/src/data/todos";
 
 const styles = StyleSheet.create({
     container: {
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     },
     text:{
         flex: 1,
+        padding: 5,
         borderBottomWidth: 1
     }
 });
@@ -43,6 +44,11 @@ class MainScreen extends Component {
         const newList = updateTodo(todos,todo);
         this.setState({todos: newList});
     };
+    handleDelete = todo =>{
+        const {todos} = this.state;
+        const newList = deleteTodo(todos,todo);
+        this.setState({todos: newList});
+    }
     render() {
         const { todos, newTodo } = this.state;
         return (
@@ -53,7 +59,7 @@ class MainScreen extends Component {
                 <TextInput value={newTodo} onChangeText={thingtodo=> this.setState({newTodo:thingtodo})} placeholder="Introduce una nueva tarea" autoCapitalize="sentences" style={styles.text} returnKeyType="done"/>
                 <Button title="Añadir" onPress={this.addTodoBtn}/>
                 </View>
-                <TodoList todos={todos} onUpdate={this.handleUpdate} />
+                <TodoList todos={todos} onUpdate={this.handleUpdate} onDelete={this.handleDelete} />
             </SafeAreaView>
         );
     }
