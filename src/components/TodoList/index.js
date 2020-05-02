@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   SectionList,
+  Image,
 } from "react-native";
+import deleteImage from "TodoList/assets/delete.png"; // As the image will appear to many times is better import it before use it
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -44,6 +46,10 @@ const styles = StyleSheet.create({
     color: "#d92114",
     fontSize: 18,
   },
+  deleteImage: {
+    width: 20,
+    height: 20
+  },
   separator: {
     height: 1,
     backgroundColor: "#CED0CE",
@@ -54,6 +60,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center", // Vertically
     alignItems: "center", // Horizontally
+  },
+  emptyImage: {
+    width: 50,
+    height: 50,
+    tintColor: "#005500",
   },
   sectionHeader: {
     backgroundColor: "#ddd",
@@ -73,17 +84,19 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
       <Text style={[styles.text, todo.done && styles.textDone]}>
         {todo.text}
       </Text>
-      <TouchableHighlight style={styles.deleteButton}>
-        <Text style={styles.deleteButtonText} onPress={() => onDelete(todo)}>
-          X
-        </Text>
-      </TouchableHighlight>
+      <TouchableOpacity style={styles.deleteButton} onPress={() => onDelete(todo)}>
+        <Image source={deleteImage} style={styles.deleteImage}></Image>
+      </TouchableOpacity>
     </TouchableOpacity>
   );
   const renderSeparator = () => <View style={styles.separator} />;
 
   const renderEmptyComponent = () => (
     <View style={styles.emptyList}>
+      <Image
+        style={styles.emptyImage}
+        source={require("TodoList/assets/check.png")}
+      />
       <Text>Tu lista esta vacia, empieza por añadir notas!</Text>
     </View>
   );
