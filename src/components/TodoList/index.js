@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableHighlight,
-  FlatList,
+  SectionList,
 } from "react-native";
 const styles = StyleSheet.create({
   container: {
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     justifyContent: "center", // Vertically
     alignItems: "center", // Horizontally
   },
+  sectionHeader: {
+    backgroundColor: "#ddd",
+    padding: 10,
+  },
 });
 // Adds onUpdate parameter from parent
 const TodoList = ({ todos, onUpdate, onDelete }) => {
@@ -84,16 +88,39 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
     </View>
   );
 
+  const renderSectionHeader = ({ section: { title, data } }) => (
+    <View style={styles.sectionHeader}>
+      <Text>
+        {title} ({data.length})
+      </Text>
+    </View>
+  );
+
   return (
-    <FlatList
+    <SectionList
       contentContainerStyle={styles.contentContainer}
       style={styles.container}
-      data={todos}
+      sections={
+        todos && todos.length
+          ? [
+              {
+                title: "Tareas",
+                data: todos.filter((todo) => todo.done != true),
+              },
+              {
+                title: "Terminadas",
+                data: todos.filter((todo) => todo.done == true),
+              },
+            ]
+          : []
+      } // If is view is not empty
       keyExtractor={(todo) => todo.id}
       renderItem={({ item }) => renderItem(item)}
       ItemSeparatorComponent={renderSeparator}
       ListEmptyComponent={renderEmptyComponent}
-    ></FlatList>
+      renderSectionHeader={renderSectionHeader}
+      stickySectionHeadersEnabled={true}
+    ></SectionList>
   );
 };
 export default TodoList;
