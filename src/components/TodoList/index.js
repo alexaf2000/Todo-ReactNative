@@ -12,14 +12,14 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   contentContainer: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   listItem: {
     padding: 5,
     margin: 5,
     width: "100%",
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   text: {
     flex: 1,
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   bullet: {
-    width: "10%"
+    width: "10%",
   },
   textDone: {
     textDecorationLine: "line-through",
@@ -44,9 +44,21 @@ const styles = StyleSheet.create({
     color: "#d92114",
     fontSize: 18,
   },
+  separator: {
+    height: 1,
+    backgroundColor: "#CED0CE",
+    width: "86%",
+    marginLeft: "14%",
+  },
+  emptyList: {
+    flex: 1,
+    justifyContent: "center", // Vertically
+    alignItems: "center", // Horizontally
+  },
 });
 // Adds onUpdate parameter from parent
 const TodoList = ({ todos, onUpdate, onDelete }) => {
+  // Important to add those methods inside this TodoList
   const renderItem = (todo) => (
     <TouchableOpacity
       key={todo.text}
@@ -64,6 +76,13 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
       </TouchableHighlight>
     </TouchableOpacity>
   );
+  const renderSeparator = () => <View style={styles.separator} />;
+
+  const renderEmptyComponent = () => (
+    <View style={styles.emptyList}>
+      <Text>Tu lista esta vacia, empieza por añadir notas!</Text>
+    </View>
+  );
 
   return (
     <FlatList
@@ -72,6 +91,8 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
       data={todos}
       keyExtractor={(todo) => todo.id}
       renderItem={({ item }) => renderItem(item)}
+      ItemSeparatorComponent={renderSeparator}
+      ListEmptyComponent={renderEmptyComponent}
     ></FlatList>
   );
 };
