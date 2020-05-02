@@ -1,10 +1,15 @@
 import uuid from 'react-native-uuid';
 
-const getTodos = () => [
-    newTodo({ text: "Thing 1", done: false }),
-    newTodo({ text: "Thing 2", done: false }),
-    newTodo({ text: "Thing 3", done: true })
-];
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+const getTodos = async() => {
+    await delay(2000);
+    return [
+        newTodo({ text: "Thing 1", done: false }),
+        newTodo({ text: "Thing 2", done: false }),
+        newTodo({ text: "Thing 3", done: true })
+    ];
+};
 const newTodo = todo => ({
     id: uuid.v1(),
     text: todo.text,
