@@ -10,28 +10,24 @@ import {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    flexGrow: 1,
-    alignContent: "center",
   },
   contentContainer: {
-    alignItems: "center",
-    paddingVertical: 10,
+    flexGrow: 1
   },
   listItem: {
-    borderWidth: 1,
-    padding: 2,
-    margin: 2,
-    width: "80%",
+    padding: 5,
+    margin: 5,
+    width: "100%",
     flexDirection: "row",
+    alignItems: "center"
   },
   text: {
     flex: 1,
-    padding: 5,
+    marginLeft: 5,
     fontWeight: "bold",
   },
   bullet: {
-    fontWeight: "bold",
-    padding: 5,
+    width: "10%"
   },
   textDone: {
     textDecorationLine: "line-through",
