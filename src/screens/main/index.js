@@ -17,6 +17,7 @@ import {
   deleteTodo,
 } from "TodoList/src/data/todos";
 import AddTodo from "../../components/AddTodo";
+import FAB from "TodoList/src/components/FAB";
 
 const styles = StyleSheet.create({
   container: {
@@ -98,7 +99,6 @@ class MainScreen extends Component {
           ToDo List App
         </Text>
         <View style={styles.inputTodo}>
-          <Button title="Añadir" onPress={this.toggleModal} />
         </View>
         {/* in case of loading, then show the activity indicator */}
         {loading && (
@@ -121,6 +121,7 @@ class MainScreen extends Component {
           onAddTodo={this.handleAdd}
           onCloseModal={this.toggleModal}
         />
+        <FAB text="+" fabStyle={{backgroundColor:"#007bef"}} textStyle={{color:"#fff"}} onPress={this.toggleModal}/>
       </SafeAreaView>
     );
   }
