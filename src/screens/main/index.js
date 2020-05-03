@@ -16,6 +16,7 @@ import {
   updateTodo,
   deleteTodo,
 } from "TodoList/src/data/todos";
+import AddTodo from "../../components/AddTodo";
 
 const styles = StyleSheet.create({
   container: {
@@ -47,14 +48,16 @@ class MainScreen extends Component {
       todos: [],
       newTodo: null,
       loading: true,
+      addModalVisible: false,
     };
   }
   componentDidMount = async () => {
     this.setState({ todos: await getTodos(), loading: false });
   };
-  addTodoBtn = () => {
-    const { todos, newTodo } = this.state;
-    const newList = addTodo(todos, { text: newTodo });
+  handleAdd = (newTodo) => {
+    const { todos } = this.state;
+    const newList = addTodo(todos, newTodo);
+    console.log(newTodo);
     this.setState({ todos: newList, newTodo: null });
   };
   handleUpdate = (todo) => {
@@ -79,8 +82,11 @@ class MainScreen extends Component {
       ]
     );
   };
+  toggleModal = () => {
+    this.setState({ addModalVisible: !this.state.addModalVisible });
+  };
   render() {
-    const { todos, newTodo, loading } = this.state;
+    const { todos, newTodo, loading, addModalVisible } = this.state;
     return (
       /* SafeAreaView prevent notch problem on iOS */
       <SafeAreaView style={styles.container}>
@@ -92,15 +98,7 @@ class MainScreen extends Component {
           ToDo List App
         </Text>
         <View style={styles.inputTodo}>
-          <TextInput
-            value={newTodo}
-            onChangeText={(thingtodo) => this.setState({ newTodo: thingtodo })}
-            placeholder="Introduce una nueva tarea"
-            autoCapitalize="sentences"
-            style={styles.text}
-            returnKeyType="done"
-          />
-          <Button title="Añadir" onPress={this.addTodoBtn} />
+          <Button title="Añadir" onPress={this.toggleModal} />
         </View>
         {/* in case of loading, then show the activity indicator */}
         {loading && (
@@ -118,6 +116,11 @@ class MainScreen extends Component {
             onDelete={this.handleDelete}
           />
         )}
+        <AddTodo
+          visible={addModalVisible}
+          onAddTodo={this.handleAdd}
+          onCloseModal={this.toggleModal}
+        />
       </SafeAreaView>
     );
   }
