@@ -9,6 +9,7 @@ import {
   Image,
 } from "react-native";
 import deleteImage from "TodoList/assets/delete.png"; // As the image will appear to many times is better import it before use it
+import CheckBox from "react-native-check-box";
 const styles = StyleSheet.create({
   container: {
     width: "100%",
@@ -27,9 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 5,
     fontWeight: "bold",
-  },
-  bullet: {
-    width: "10%",
   },
   textDone: {
     textDecorationLine: "line-through",
@@ -75,12 +73,14 @@ const styles = StyleSheet.create({
 const TodoList = ({ todos, onUpdate, onDelete }) => {
   // Important to add those methods inside this TodoList
   const renderItem = (todo) => (
-    <TouchableOpacity
-      key={todo.text}
-      style={styles.listItem}
-      onPress={() => onUpdate({ ...todo, done: !todo.done })}
-    >
-      <Text style={styles.bullet}> - </Text>
+    <TouchableOpacity key={todo.text} style={styles.listItem}>
+      <CheckBox
+        style={{ flex: 1, padding: 10 }}
+        checkedCheckBoxColor="#007bef"
+        onClick={() => onUpdate({ ...todo, done: !todo.done })}
+        isChecked={todo.done}
+        
+      />
       <Text style={[styles.text, todo.done && styles.textDone]}>
         {todo.text}
       </Text>
