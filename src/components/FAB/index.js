@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 5,
     position: "absolute",
-    bottom: 50,
+    bottom: 20,
     right: 20,
   },
   text: {
