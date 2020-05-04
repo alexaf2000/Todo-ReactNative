@@ -75,11 +75,10 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
   const renderItem = (todo) => (
     <TouchableOpacity key={todo.text} style={styles.listItem}>
       <CheckBox
-        style={{ flex: 1, padding: 10 }}
+        style={{ padding: 10 }}
         checkedCheckBoxColor="#007bef"
         onClick={() => onUpdate({ ...todo, done: !todo.done })}
         isChecked={todo.done}
-        
       />
       <Text style={[styles.text, todo.done && styles.textDone]}>
         {todo.text}
