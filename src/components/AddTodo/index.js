@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Modal, View, Text, StyleSheet, TextInput, Button } from "react-native";
+import {
+  Modal,
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Picker,
+} from "react-native";
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -20,7 +28,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 14.78,
-    
+
     elevation: 22,
     //! alignItems: "flex-end",
   },
@@ -37,6 +45,9 @@ const initialState = {
   description: "",
   priority: 0,
 };
+
+const priorities = ["Urgente", "Importante", "Normal", "No importante"];
+
 export default class AddTodo extends Component {
   constructor(props) {
     super(props);
@@ -46,7 +57,6 @@ export default class AddTodo extends Component {
     };
   }
   addTodo = () => {
-    console.log(this.state);
     const { onAddTodo, onCloseModal } = this.props;
     const { text, description, priority } = this.state;
     onAddTodo({ text, description, priority });
@@ -77,6 +87,18 @@ export default class AddTodo extends Component {
               autoCapitalize="sentences"
               onChangeText={(description) => this.setState({ description })}
             />
+            <Text style={{ fontWeight: "bold" }}>Prioridad</Text>
+            <Picker
+              selectedValue={priority}
+              onValueChange={(itemValue) =>
+                this.setState({ priority: itemValue })
+              }
+            >
+              {priorities.map((item, idx) => (
+                <Picker.Item label={item} value={idx} />
+              ))}
+            </Picker>
+
             <View style={{ flexDirection: "row", justifyContent: "center" }}>
               <Button title="Cancelar" onPress={onCloseModal} />
               <Button title="Añadir" onPress={this.addTodo} />

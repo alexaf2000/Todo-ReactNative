@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   deleteImage: {
     width: 20,
-    height: 20
+    height: 20,
   },
   separator: {
     height: 1,
@@ -84,7 +84,10 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
       <Text style={[styles.text, todo.done && styles.textDone]}>
         {todo.text}
       </Text>
-      <TouchableOpacity style={styles.deleteButton} onPress={() => onDelete(todo)}>
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => onDelete(todo)}
+      >
         <Image source={deleteImage} style={styles.deleteImage}></Image>
       </TouchableOpacity>
     </TouchableOpacity>
@@ -118,7 +121,16 @@ const TodoList = ({ todos, onUpdate, onDelete }) => {
           ? [
               {
                 title: "Tareas",
-                data: todos.filter((todo) => todo.done != true),
+                data: todos
+                  .filter((todo) => todo.done != true)
+                  .sort(
+                    (a, b) =>
+                      a.priority > b.priority
+                        ? 1 // if true
+                        : b.priority > a.priority //else if...
+                        ? -1 // if true
+                        : 0 //else
+                  ),
               },
               {
                 title: "Terminadas",
