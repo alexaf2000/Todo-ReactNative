@@ -99,7 +99,7 @@ export default class AddTodo extends Component {
               ))}
             </Picker>
 
-            <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
               <Button title="Cancelar" onPress={onCloseModal} />
               <Button title="Añadir" onPress={this.addTodo} />
             </View>
