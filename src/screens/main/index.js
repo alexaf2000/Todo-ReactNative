@@ -23,14 +23,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    marginTop: 30,
     alignItems: "center",
     // justifyContent: 'center',
-  },
-  inputTodo: {
-    flexDirection: "row",
-    width: "80%",
-    marginBottom: 5,
   },
   text: {
     flex: 1,
@@ -52,6 +46,7 @@ class MainScreen extends Component {
       addModalVisible: false,
     };
   }
+
   componentDidMount = async () => {
     this.setState({ todos: await getTodos(), loading: false });
   };
@@ -87,19 +82,16 @@ class MainScreen extends Component {
     this.setState({ addModalVisible: !this.state.addModalVisible });
   };
   render() {
+    // Here we change the router navigation properties
+    const navigation = this.props.navigation;
+    navigation.setOptions({
+      title: "TodoList!",
+    });
+
     const { todos, newTodo, loading, addModalVisible } = this.state;
     return (
       /* SafeAreaView prevent notch problem on iOS */
       <SafeAreaView style={styles.container}>
-        <Text
-          selectable
-          selectionColor="red"
-          style={{ fontSize: 24, marginBottom: 25, fontWeight: "bold" }}
-        >
-          ToDo List App
-        </Text>
-        <View style={styles.inputTodo}>
-        </View>
         {/* in case of loading, then show the activity indicator */}
         {loading && (
           <ActivityIndicator
@@ -121,7 +113,12 @@ class MainScreen extends Component {
           onAddTodo={this.handleAdd}
           onCloseModal={this.toggleModal}
         />
-        <FAB text="+" fabStyle={{backgroundColor:"#007bef"}} textStyle={{color:"#fff"}} onPress={this.toggleModal}/>
+        <FAB
+          text="+"
+          fabStyle={{ backgroundColor: "#007bef" }}
+          textStyle={{ color: "#fff" }}
+          onPress={this.toggleModal}
+        />
       </SafeAreaView>
     );
   }
