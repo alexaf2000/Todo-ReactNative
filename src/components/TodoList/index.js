@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
   },
 });
 // Adds onUpdate parameter from parent
-const TodoList = ({ todos, onUpdate, onDelete }) => {
+const TodoList = ({ todos, onUpdate, onDelete, onEdit }) => {
   // Important to add those methods inside this TodoList
   const renderItem = (todo) => (
-    <TouchableOpacity key={todo.text} style={styles.listItem}>
+    <TouchableOpacity key={todo.text} style={styles.listItem} onPress={()=>onEdit(todo)}>
       <CheckBox
         style={{ padding: 10 }}
         checkedCheckBoxColor="#007bef"

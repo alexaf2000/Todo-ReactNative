@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 // Let's import the screens
 import MainScreen from "TodoList/src/screens/main";
+import editTodo from  "TodoList/src/screens/editTodo";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,11 @@ function App() {
         <Stack.Screen
           name="Main"
           component={MainScreen}
+          options={{ title: "TodoList" }}
+        />
+        <Stack.Screen
+          name="Edit"
+          component={editTodo}
           options={{ title: "TodoList" }}
         />
       </Stack.Navigator>

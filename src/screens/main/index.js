@@ -57,6 +57,7 @@ class MainScreen extends Component {
     this.setState({ todos: newList, newTodo: null });
   };
   handleUpdate = (todo) => {
+    console.log(todo);
     const { todos } = this.state;
     const newList = updateTodo(todos, todo);
     this.setState({ todos: newList });
@@ -77,6 +78,9 @@ class MainScreen extends Component {
         },
       ]
     );
+  };
+  openEditTodo = todo => {
+    this.props.navigation.navigate("Edit",{todo, onSave: this.handleUpdate}); // Envia como parametro el objeto todo presionado
   };
   toggleModal = () => {
     this.setState({ addModalVisible: !this.state.addModalVisible });
@@ -106,6 +110,7 @@ class MainScreen extends Component {
             todos={todos}
             onUpdate={this.handleUpdate}
             onDelete={this.handleDelete}
+            onEdit={this.openEditTodo}
           />
         )}
         <AddTodo

@@ -8,6 +8,7 @@ import {
   Button,
   Picker,
 } from "react-native";
+import BasicAddItems from "TodoList/src/components/BasicAddItems";
 
 const styles = StyleSheet.create({
   modalContainer: {
@@ -46,8 +47,6 @@ const initialState = {
   priority: 0,
 };
 
-const priorities = ["Urgente", "Importante", "Normal", "No importante"];
-
 export default class AddTodo extends Component {
   constructor(props) {
     super(props);
@@ -71,35 +70,10 @@ export default class AddTodo extends Component {
       <Modal visible={visible} transparent={true} animationType="slide">
         <View style={styles.modalContainer}>
           <View style={styles.modalBox}>
-            <Text style={{ fontWeight: "bold" }}>Título</Text>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Inserta un título..."
-              returnKeyType="done"
-              autoCapitalize="sentences"
-              onChangeText={(text) => this.setState({ text })}
-            />
-            <Text style={{ fontWeight: "bold" }}>Descripción</Text>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Inserta una descripción (opcional)"
-              returnKeyType="done"
-              autoCapitalize="sentences"
-              onChangeText={(description) => this.setState({ description })}
-            />
-            <Text style={{ fontWeight: "bold" }}>Prioridad</Text>
-            <Picker
-              selectedValue={priority}
-              onValueChange={(itemValue) =>
-                this.setState({ priority: itemValue })
-              }
+            <BasicAddItems text={text} description={description} priority={priority} onChange={value=>this.setState(value)} />
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-around" }}
             >
-              {priorities.map((item, idx) => (
-                <Picker.Item label={item} value={idx} />
-              ))}
-            </Picker>
-
-            <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
               <Button title="Cancelar" onPress={onCloseModal} />
               <Button title="Añadir" onPress={this.addTodo} />
             </View>
