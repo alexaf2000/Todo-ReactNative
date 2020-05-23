@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
 });
 
 
-const BasicAddItems = ({ text, description, priority, onChange }) => (
+const BasicAddItems = ({ text, description, priority, onChange }) =>{
+  return (
   <React.Fragment>
     <Text style={{ fontWeight: "bold" }}>Título</Text>
     <TextInput
@@ -33,8 +34,8 @@ const BasicAddItems = ({ text, description, priority, onChange }) => (
       onChangeText={(description) => onChange({ description })}
     />
     <Text style={{ fontWeight: "bold" }}>Prioridad</Text>
-    <PriorityPicker priority={priority} onChange={priority=> onChange(priority)}></PriorityPicker>
+    <PriorityPicker priority={priority} onChange={priority=> onChange({priority})}></PriorityPicker>
   </React.Fragment>
-);
+)};
 
 export default BasicAddItems;
