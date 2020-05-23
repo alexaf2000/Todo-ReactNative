@@ -1,9 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import AppNavigator from "TodoList/src/navigation/AppNavigator";
 
 export default function App() {
-  return <AppNavigator />;
+  return <React.Fragment>
+    <StatusBar barStyle="light-content"/>
+    <AppNavigator />
+    </React.Fragment>;
 }
 
 const styles = StyleSheet.create({
