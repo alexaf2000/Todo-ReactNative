@@ -46,7 +46,7 @@ export default class editTodo extends Component {
         <Text> Editar tarea </Text>
         <BasicAddItems
           text={text}
-          descripiton={description}
+          description={description}
           priority={priority}
           onChange={(newValueFromProperty) => this.updateTodo(newValueFromProperty)}
         />
