@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Text, TextInput, Picker, View, StyleSheet } from "react-native";
+import PriorityPicker from "../PriorityPicker";
 
 const styles = StyleSheet.create({
   TextInput: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const priorities = ["Urgente", "Importante", "Normal", "No importante"];
+
 const BasicAddItems = ({ text, description, priority, onChange }) => (
   <React.Fragment>
     <Text style={{ fontWeight: "bold" }}>Título</Text>
@@ -32,14 +33,7 @@ const BasicAddItems = ({ text, description, priority, onChange }) => (
       onChangeText={(description) => onChange({ description })}
     />
     <Text style={{ fontWeight: "bold" }}>Prioridad</Text>
-    <Picker
-      selectedValue={priority}
-      onValueChange={(itemValue) => onChange({ priority: itemValue })}
-    >
-      {priorities.map((item, idx) => (
-        <Picker.Item label={item} value={idx} />
-      ))}
-    </Picker>
+    <PriorityPicker priority={priority} onChange={priority=> onChange(priority)}></PriorityPicker>
   </React.Fragment>
 );
 
